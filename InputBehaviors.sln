@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputBehaviors", "InputBehaviors\InputBehaviors.csproj", "{9A308320-F2DD-41F3-9FF2-3AC21D91445B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputBehaviors.Test", "Test\InputBehaviors.Test\InputBehaviors.Test.csproj", "{4946910D-21B6-1240-722E-B2FADCB6A447}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9A308320-F2DD-41F3-9FF2-3AC21D91445B}.Debug|x64.Build.0 = Debug|x64
 		{9A308320-F2DD-41F3-9FF2-3AC21D91445B}.Release|x64.ActiveCfg = Release|x64
 		{9A308320-F2DD-41F3-9FF2-3AC21D91445B}.Release|x64.Build.0 = Release|x64
+		{4946910D-21B6-1240-722E-B2FADCB6A447}.Debug|x64.ActiveCfg = Debug|x64
+		{4946910D-21B6-1240-722E-B2FADCB6A447}.Debug|x64.Build.0 = Debug|x64
+		{4946910D-21B6-1240-722E-B2FADCB6A447}.Release|x64.ActiveCfg = Release|x64
+		{4946910D-21B6-1240-722E-B2FADCB6A447}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
