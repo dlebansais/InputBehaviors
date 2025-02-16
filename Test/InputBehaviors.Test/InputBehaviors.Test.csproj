@@ -9,6 +9,7 @@
 
         <RootNamespace>InputBehaviors.Test</RootNamespace>
 
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NeutralLanguage>en-US</NeutralLanguage>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>

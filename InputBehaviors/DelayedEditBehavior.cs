@@ -82,7 +82,7 @@ public class DelayedEditBehavior : Behavior<TextBox>, IDisposable
     {
         if (sender is TextBox Edit && Edit.Text is string Text)
         {
-            _ = DelayTimer.Change(TimeSpan.FromMilliseconds(500), Timeout.InfiniteTimeSpan);
+            _ = DelayTimer.Change(Delay, Timeout.InfiniteTimeSpan);
             NewText = Text;
         }
     }
