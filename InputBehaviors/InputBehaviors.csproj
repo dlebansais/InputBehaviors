@@ -1,0 +1,92 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net481;net8.0-windows7.0;net9.0-windows7.0</TargetFrameworks>
+        <LangVersion>preview</LangVersion>
+        <Nullable>enable</Nullable>
+        <Platforms>x64</Platforms>
+        <UseWPF>true</UseWPF>
+        
+        <RootNamespace>InputBehaviors</RootNamespace>
+        <Version>1.0.0</Version>
+        <Authors>David Le Bansais</Authors>
+        <Company />
+        <Product />
+        <Description>A set of WPF behaviors to enhance input controls</Description>
+        <Copyright>Copyright © 2025 David Le Bansais</Copyright>
+        <AssemblyVersion>1.0.0.1</AssemblyVersion>
+        <FileVersion>1.0.0.1</FileVersion>
+        <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <AnalysisLevel>latest-all</AnalysisLevel>
+        <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+        <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\.editorconfig" Link=".editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Nullable.Extended.Analyzer" Version="1.15.6495">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="IDisposableAnalyzers" Version="4.0.8">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="dlebansais.CSharpLatest" Version="2.1.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="PolySharp" Version="1.15.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(SolutionDir)'!='*Undefined*'">
+        <Exec Command="if exist &quot;$(SolutionDir)updatecommit.bat&quot; call &quot;$(SolutionDir)updatecommit.bat&quot; &quot;$(SolutionDir)&quot; &quot;$(TargetPath)&quot;" />
+        <Exec Command="if exist &quot;$(SolutionDir)signfile.bat&quot; call &quot;$(SolutionDir)signfile.bat&quot; &quot;$(SolutionDir)&quot; &quot;$(Configuration)-$(Platform)&quot; &quot;$(TargetPath)&quot;" Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+
+        <ItemGroup>
+            <None Remove="@(None)" />
+        </ItemGroup>
+
+        <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+            <None Include="$(TargetDir)$(ProjectName).dll" />
+            <None Include="$(TargetDir)$(ProjectName).pdb" />
+            <None Include="$(TargetDir)$(ProjectName).xml" />
+        </ItemGroup>
+        <Copy SourceFiles="@(None)" DestinationFolder="$(SolutionDir)nuget-debug\lib\$(TargetFramework)\" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+
+        <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+            <None Include="$(TargetDir)$(ProjectName).dll" />
+            <None Include="$(TargetDir)$(ProjectName).xml" />
+        </ItemGroup>
+        <Copy SourceFiles="@(None)" DestinationFolder="$(SolutionDir)nuget\lib\$(TargetFramework)\" Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    </Target>
+
+</Project>
