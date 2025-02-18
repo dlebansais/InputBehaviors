@@ -75,9 +75,9 @@ after_test:
   - if '%APPVEYOR_REPO_BRANCH%' == 'master' after-test.bat
 
 artifacts:
-  - path: $(APPVEYOR_PROJECT_NAME).Package\bin\x64\Debug\$(PACKAGE_PREFIX).$(APPVEYOR_PROJECT_NAME)-Debug.*.nupkg
+  - path: $(PACKAGE_PREFIX).$(APPVEYOR_PROJECT_NAME)-Debug.*.nupkg
     name: $(APPVEYOR_PROJECT_NAME)-Package-Debug
-  - path: $(APPVEYOR_PROJECT_NAME).Package\bin\x64\Release\$(PACKAGE_PREFIX).$(APPVEYOR_PROJECT_NAME).*.nupkg
+  - path: $(PACKAGE_PREFIX).$(APPVEYOR_PROJECT_NAME).*.nupkg
     name: $(APPVEYOR_PROJECT_NAME)-Package-Release
 
 deploy:
