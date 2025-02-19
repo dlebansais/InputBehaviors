@@ -16,6 +16,7 @@
         <Copyright>Copyright © 2025 David Le Bansais</Copyright>
         <AssemblyVersion>1.0.1.2</AssemblyVersion>
         <FileVersion>1.0.1.2</FileVersion>
+        <RepositoryUrl>https://github.com/dlebansais/InputBehaviors</RepositoryUrl>
         <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
 
         <NeutralLanguage>en-US</NeutralLanguage>
